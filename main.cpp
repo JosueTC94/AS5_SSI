@@ -107,7 +107,46 @@ int main()
     }
   }
   */
-  
+  //---------------------MODIFICACIÓN----------------
+  cout << endl;
+  cout << "Modificacion:" << endl;
+  bitset<19> a;
+  bitset<22> b;
+  bitset<23> c;
+  bitset<64> clave (std::string("1011110011011110000111101011001111000100110101001000100011010001"));
+  int ciclo =  0;
+
+  imprimir(a,b,c);
+  //cout << "Introduzca clave:";
+  //cin >> clave;
+  //1011110011011110000111101011001111000100110101001000100011010001
+  cout << "Clave actual: " << clave << endl;
+  while(ciclo < 10)
+  {
+    cout << "-------------------------------------------" << endl;
+    cin.get();
+    int resultado_1 = 0;
+    resultado_1 = a.test(13) ^ a.test(16) ^ a.test(17) ^ a.test(18) ^ clave.test(ciclo);
+    cout << "a(" << ciclo << "): " <<  resultado_1 << "=>" << a.test(18) << " ^ " << a.test(17) << " ^ " << a.test(16) << " ^ " << a.test(13) << " ^ " << clave.test(ciclo) << endl;
+    a = a << 1;
+    a.set(0,resultado_1);
+
+    int resultado_2 = 0;
+    resultado_2 = b.test(21) ^ b.test(20) ^ clave.test(ciclo);
+    cout << "b(" << ciclo << "): " << resultado_2 <<" => " << b.test(21) << " ^ " << b.test(20) << " ^ " << clave.test(ciclo) << endl;
+    b = b << 1;
+    b.set(0,resultado_2);
+
+    int resultado_3 = 0;
+    resultado_3 = c.test(22) ^ c.test(21) ^ c.test(20) ^ c.test(7) ^ clave.test(ciclo);
+    cout << "c(" << ciclo << "): " << resultado_3 << "=>" << c.test(22) << " ^ " << c.test(21) << " ^ " << c.test(20) << " ^ " << c.test(7) << " ^ " << clave.test(ciclo) << endl;
+    c = c << 1;
+    c.set(0,resultado_3);
+    cout << endl;
+    imprimir(a,b,c);
+    cout << endl;
+    ciclo++;
+  }
   cout << endl;
   return 0;
 }
